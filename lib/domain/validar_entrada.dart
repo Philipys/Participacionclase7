@@ -10,6 +10,9 @@ class ValidarEntrada {
     if (personas <= 0) {
       return 'Debe haber al menos una persona';
     }
+    if (propina > 100) {
+      return 'La propina no puede superar el 100%';
+    }
     return null;
   }
 
@@ -25,6 +28,10 @@ class ValidarEntrada {
     final int? personas = int.tryParse(personasTexto.trim());
     if (personas == null || personas <= 0) {
       return 'Debe haber al menos una persona';
+    }
+    final double propina = double.tryParse(propinaTexto?.trim() ?? '') ?? 0.0;
+    if (propina > 100) {
+      return 'La propina no puede superar el 100%';
     }
     return null;
   }
