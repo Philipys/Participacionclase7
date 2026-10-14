@@ -22,17 +22,19 @@ class ValidarEntrada {
     String? propinaTexto,
   }) {
     final double? monto = double.tryParse(montoTexto.trim());
-    if (monto == null || monto.isNaN || monto <= 0) {
+    if (monto == null) {
       return 'Monto inválido';
     }
     final int? personas = int.tryParse(personasTexto.trim());
-    if (personas == null || personas <= 0) {
+    if (personas == null) {
       return 'Debe haber al menos una persona';
     }
     final double propina = double.tryParse(propinaTexto?.trim() ?? '') ?? 0.0;
-    if (propina > 100) {
-      return 'La propina no puede superar el 100%';
-    }
-    return null;
+
+    return ejecutar(
+      monto: monto,
+      personas: personas,
+      propina: propina,
+    );
   }
 }
