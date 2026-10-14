@@ -57,4 +57,24 @@ void main() {
     final resArriba = calcularDivision.ejecutar(cuenta, estrategia);
     expect(resArriba.montoPorPersona, closeTo(4.00, 0.001));
   });
+
+  group('Regla: La propina no puede superar el 100 %', () {
+    test('1. Con monto 100, 4 personas y propina 150, la validación devuelve exactamente "La propina no puede superar el 100%"', () {
+      final error = validarEntrada.ejecutar(
+        monto: 100.0,
+        personas: 4,
+        propina: 150.0,
+      );
+      expect(error, equals('La propina no puede superar el 100%'));
+    });
+
+    test('2. Con monto 100, 4 personas y propina 100, la validación NO devuelve error (el límite exacto sí se permite)', () {
+      final error = validarEntrada.ejecutar(
+        monto: 100.0,
+        personas: 4,
+        propina: 100.0,
+      );
+      expect(error, isNull);
+    });
+  });
 }
